@@ -1,0 +1,13 @@
+function [verified, res] = check_epipolar_constraint(F,P1,P2)
+    verified = true;
+    [~,n1] = size(P1);
+    res = zeros(1,n1);
+
+    for i=1:n1
+        res(i) = abs(P2(:,i)'*F*P1(:,i));
+        if(abs(P2(:,i)'*F*P1(:,i)) > 10^-2) 
+            verified = false;
+        end
+    end
+
+end
